@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Stock</title>
+</head>
+<style>
+    body{
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    }
+    label{
+        color: aliceblue;
+    }
+    h1{
+        color: aqua;
+        border-style: ridge;
+        text-align: center;
+    }
+    .form-center{
+        display: flex;
+        justify-content: center;
+
+    }
+
+</style>
+{% include 'navbar3.html' %} 
+<body background="{% static '/hospitalapp/images/bg10.jpg' %}">
+  <h1>Medical Inventory</h1>
+  <div class ="form-center">
+    <form method="POST">
+      {% csrf_token %}
+
+      <label>Medicine:</label>
+      <select name="medicine" id="medicine">
+          <option value="" selected>Select Product</option>
+          <option value="Paracetomol" >Paracetomol</option>
+          <option value="Bandages" >Bandages</option>
+          <option value="Thermometer" >Thermometer</option>
+          <option value="Dolo650" >Dolo650</option>
+          <option value="Crosin" >Crosin</option>
+          <option value="ColdAct" >ColdAct</option>
+          <option value="Tus-Q" >Tus-Q</option>
+          <option value="ZinCold" >ZinCold</option>
+          <option value="Saridon" >Saridon</option>
+          <option value="Zerodol-P" >Zerodol-P</option>
+          <option value="Cetirizine" >Cetirizine</option>
+          <option value="Dart" >Dart</option>
+      </select><br><br>
+          
+      <label>Quantity: </label>
+      <input type="text" placeholder="Quantity" name="quantity" required></label><br><br>
+      <label>Price: </label>
+      <input type="text" placeholder="price" type="text" name="price" required><br><br>
+          
+      <input type="submit" value="Submit">  
+      </form>
+      </div>
+</body>
+</html>

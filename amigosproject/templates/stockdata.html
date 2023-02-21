@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include 'cdnlines.html' %}  <!--bootstrap cdnlines-->
+        <style>
+           body{
+          
+            background-repeat:no-repeat;
+            background-size:cover;
+           }
+          
+            h1{
+        color: black;
+        
+        text-align: center;
+        }
+
+            
+        </style>
+    </head>
+    {% include 'navbar3.html' %}
+    <body>
+      
+      <u><h1>EMPLOYEE_DETAILS</h1></u>
+      <!--fetching data from database in table format-->
+        <table id="myTable">
+            <thead id="w">
+                <tr>
+                  
+                    <th>medicine</th>
+                    <th>quantity</th>
+                    <th>price</th>
+                    </tr>
+            </thead>
+            <tbody  id="w">
+                {% if stockdat %} {% for i in stockdat %}
+                <tr>
+                  <!--getting the table body data from model-->
+                    <td>{{i.medicine}}</td>
+                    <td>{{i.quantity}}</td>
+                    <td>{{i.price}}</td>
+                    
+                </tr>
+                {% endfor %} {% endif %}
+
+            </tbody>
+        </table>
+ 
+    
+    <nav aria-label="...">
+      {% if stockdat.has_other_pages %}
+        <ul class="pagination">
+          {% if stockdat.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ stockdat.previous_page_number }}">Previous</a></li>
+          {% else %}
+            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+          {% endif %}
+ 
+          {% for i in stockdat.paginator.page_range %}
+            {% if stockdat.number == i %}
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+ 
+          {% if stockdat.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ stockdat.next_page_number }}"></a></li>
+          {% else %}
+           
+          {% endif %}
+        </ul>
+      {% endif %}
+      </nav>
+
+
+</html>

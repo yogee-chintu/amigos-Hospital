@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {% include 'cdnlines.html' %} <!--bootstrap cdn lines -->
+    <title>EMPLOYEE_DETAILS</title>
+
+    <!--styling for form-->
+    <style>
+        input{
+            margin-top: 30px;
+        }
+        body{
+           
+           background-repeat: no-repeat;
+           background-size: cover;
+            
+        }
+        #emp_form{
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-top: 100px;
+            margin-left:500px;
+            padding-right:30px;
+            padding-left:30px;
+            
+        }
+        #login{
+            margin-left: 1400px;
+           
+        }
+        #n{
+            height: 40px;
+        }
+    </style>
+    <style>
+   
+        label{
+            margin-top:10px;
+            color:white;
+        }
+        input{
+            margin-top:5px;
+        }
+
+        h1{
+        color: aqua;
+        border-style: ridge;
+        text-align: center;
+    }
+        
+    </style>
+</head>
+
+{% include 'navbar3.html' %}
+<body background="{% static '/hospitalapp/images/bg10.jpg'%}">
+    <h1>Employee Form</h1>
+    <div class="container-fluid"> <!--creating division for form-->
+        <div class="row">
+            <div class="col-md-8">
+                <form method="POST" id="emp_form" style='border:2px solid grey; margin-top:20px;'><!--employee form-->
+                    {% csrf_token %}
+                    <label>EID:</label> <!--creating label for employee id-->
+                    <input type="number" placeholder="EMPLOYEE ID" class="form-control" name='eid' style="border-radius:20px;" required min="1">
+                    <label>ENUM:</label> <!--creating label for employee id-->
+                    <input type="number" placeholder="EMPLOYEE NUMBER" class="form-control" name='enum' style="border-radius:20px;">
+                    
+                    <label>EMPLOYEE NAME:</label><!--creating label for employee name-->
+                    <input type="text"placeholder='EMPLOYEE NAME' class="form-control" name='empname' style="border-radius:20px;" required>
+                    <label>DESIGNATION:</label><!--creating label for employee name-->
+                    <fieldset>
+                        <select name="designation" id="designation" class="form-control" name='designation' style="border-radius:20px;" onchange = "ShowHideDiv()">
+                            <option value="" selected>--select--</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Human resources manager">Human resources manager</option>
+                            <option value="Medical social worker">Medical social worker</option>
+                            <option value="Information technology specialist">Information technology specialist</option>
+                        </select>
+                    </fieldset>
+                    <div class="hidden" id="specialist1" style="display: none">
+                        <fieldset>
+                        <label>SPECIALIST:</label> <!--creating label for employee id-->
+                        <input type="text" placeholder="SPECIALIST" class="form-control" name='specialization' style="border-radius:20px;">
+                    </fieldset>
+                    </div>
+                    
+                    <label>DOJ:</label><!--creating label for doj-->
+                    <input type="date" placeholder="DATE OF JOINING" class="form-control" name='doj' style="border-radius:20px;" required>
+                    <label>EXPECTED SALARY:</label><!--creating label for expected SALARY-->
+                    <input type="number" placeholder="EXPECTED SALARY" class="form-control" name='esal' style="border-radius:20px;" required min="1">
+                    <label>PREVIOUS EXPERIENCE:</label> <!--creating label for previous EXPERIENCE-->
+                    <input type="text" placeholder="PREVIOUS EXPERIENCE" class="form-control" name='prevexp' style="border-radius:20px;" required>
+                    <input type="submit" value="SUBMIT"  class="bg-success text-white mt-3" style="border-radius:20px;margin-left:60px">
+                    <input type="reset" value="CLEAR" class="bg-danger text-white mt-3" style="border-radius:20px;margin-left:50px;">
+                    
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function ShowHideDiv() {
+            var designation = document.getElementById("designation");
+            var specialist1 = document.getElementById("specialist1");
+            specialist1.style.display = designation.value == "Doctor" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>

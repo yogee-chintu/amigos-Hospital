@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+</head>
+<style>
+    body{
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    }
+    h1{
+    border-style:outset ;
+    border-width: 5px lightblue ;
+    text-align: center ;
+    color: white;
+    }
+    img{
+        padding-left: 100px;
+    }
+    label{color:white}
+
+    </style>
+    {% include 'navbar.html' %} 
+    
+
+     <body background="{% static '/hospitalapp/images/bg10.jpg'%}">
+     <h1 >Dashboard</h1>
+    
+    <div style="width: 50%; height: 100; float: left; ">
+        <img src="{% static '/hospitalapp/images/doctor1.jpg' %}" width="300" height="300"><br>
+        <a href="{% url 'employeeform' %}" name="employeeform" ><label style="margin-left:200px;"><u>Employee Portal</u></label></a>
+    </div>
+    <div style="width: 50%; height: 100px; float: right;">
+        <img src="{% static '/hospitalapp/images/stock3.jpg' %}" width="300" height="300" style="margin-left: 100px;"><br>
+        <a href="{% url 'stockform' %}" name="stockform"><label style="margin-left:330px;"><u>Inventory</u></label></a>
+    </div>
+
+</div>
+</div>
+</body>
+</html>
+
+

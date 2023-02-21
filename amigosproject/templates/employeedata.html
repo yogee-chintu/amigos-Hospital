@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include 'cdnlines.html' %}  <!--bootstrap cdnlines-->
+        <style>
+           body{
+          
+            background-repeat:no-repeat;
+            background-size:cover;
+           }
+          
+            h1{
+        color: black;
+        
+        text-align: center;
+        }
+
+            
+        </style>
+    </head>
+    {% include 'navbar3.html' %}
+    <body>
+      
+      <u><h1>EMPLOYEE_DETAILS</h1></u>
+      <!--fetching data from database in table format-->
+        <table class="table table-bordered" id="myTable">
+            <thead class="bg-success" id="w">
+                <tr class="text-white">
+                  <!--sorting the data-->
+                    <th>empid</th>
+                    <th>empnum</th>
+                    <th>empname</th>
+                    <th>designation</th>
+                    <th>specialization</th>
+                    <th>doj</th>
+                    <th>expsalary</th>
+                    <th>prevexp</th>
+                </tr>
+            </thead>
+            <tbody  id="w">
+                {% if empdat %} {% for i in empdat %}
+                <tr>
+                  <!--getting the table body data from model-->
+                    <td>{{i.empid}}</td>
+                    <td>{{i.enum}}</td>
+                    <td>{{i.empname}}</td>
+                    <td>{{i.designation}}</td>
+                    <td>{{i.specialization}}</td>
+                    <td>{{i.doj}}</td>
+                    <td>{{i.expsalary}}</td>
+                    <td>{{i.prevexp}}</td>
+
+                </tr>
+                {% endfor %} {% endif %}
+
+            </tbody>
+        </table>
+ 
+    
+    <nav aria-label="...">
+      {% if empdat.has_other_pages %}
+        <ul class="pagination">
+          {% if empdat.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ empdata.previous_page_number }}">Previous</a></li>
+          {% else %}
+            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+          {% endif %}
+ 
+          {% for i in empdat.paginator.page_range %}
+            {% if empdat.number == i %}
+            <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+ 
+          {% if empdat.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ empdata.next_page_number }}"></a></li>
+          {% else %}
+           
+          {% endif %}
+        </ul>
+      {% endif %}
+      </nav>
+
+
+</html>
